@@ -9,7 +9,6 @@ import CTABanner from '@/components/CTABanner';
 import Footer from '@/components/Footer';
 import MetricsSection from '@/components/MetricsSection';
 import DifferentiatorsSection from '@/components/DifferentiatorsSection';
-import RDSection from '@/components/RDSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,7 +28,6 @@ const Index = () => {
       <HowWeHelp />
       <MetricsSection />
       <DifferentiatorsSection />
-      <RDSection />
       <PartnersStrip />
       <CTABanner />
       <Footer />

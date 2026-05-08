@@ -1,4 +1,4 @@
-import { Linkedin, Youtube, Instagram, Facebook, Twitter, Mail, Phone, MapPin, Clock, ChevronUp } from 'lucide-react';
+import { Linkedin, Youtube, Instagram, Facebook, Twitter, Mail, Phone, MapPin, Clock, ChevronUp, ChevronDown } from 'lucide-react';
 import logoColor from '@/assets/logo-color.png';
 
 const offices = [
@@ -35,66 +35,64 @@ const Footer = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
-          {/* Oficinas */}
-          <div>
-            <h4 className="text-primary font-semibold text-xs uppercase tracking-[0.2em] mb-6">Oficinas Corporativas</h4>
-            <div className="space-y-5">
-              {offices.map((o) => (
-                <div key={o.city}>
-                  <p className="text-primary/90 text-xs font-semibold uppercase tracking-wider mb-1">{o.city}</p>
-                  <p className="text-white/70 text-xs leading-relaxed">{o.address}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 space-y-2.5">
-              <div className="flex items-center gap-2.5 text-white/70 text-xs">
-                <Clock size={13} className="text-primary/60" />
-                <span>Lunes a viernes de 9:00 a 18:00 horas.</span>
-              </div>
-              <a href="tel:+525581115800" className="flex items-center gap-2.5 text-white/70 text-xs hover:text-primary transition-colors duration-300">
-                <Phone size={13} className="text-primary/60" />
-                +52 55 8111 5800
-              </a>
-              <a href="mailto:ventas@cyberpeace.tech" className="flex items-center gap-2.5 text-white/70 text-xs hover:text-primary transition-colors duration-300">
-                <Mail size={13} className="text-primary/60" />
-                ventas@cyberpeace.tech
-              </a>
-            </div>
-          </div>
-
-          {/* Redes Sociales */}
-          <div>
-            <h4 className="text-primary font-semibold text-xs uppercase tracking-[0.2em] mb-6">Redes Sociales</h4>
-            <div className="space-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
+          
+          {/* Columna 1: Logo */}
+          <div className="lg:col-span-1">
+            <img src={logoColor} alt="Cyberpeace" className="h-8 brightness-0 invert opacity-90 mb-6" />
+            <p className="text-white/70 text-sm leading-relaxed mb-6">Tu aliado en ciberseguridad integral.</p>
+            <div className="flex items-center gap-3">
               {socials.map(({ icon: Icon, url, label }) => (
-                <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white/75 text-sm hover:text-white transition-all duration-300 group">
-                  <div className="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.08] flex items-center justify-center group-hover:bg-primary/15 group-hover:border-primary/30 group-hover:text-primary transition-all duration-300">
-                    <Icon size={15} />
-                  </div>
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-300">{label}</span>
+                <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-primary transition-colors" aria-label={label}>
+                  <Icon size={18} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Acerca de + Certificaciones */}
+          {/* Columna 2: Oficinas */}
+          <div>
+            <h4 className="text-primary font-semibold text-xs uppercase tracking-[0.2em] mb-6">Oficinas</h4>
+            <div className="space-y-4">
+              {offices.map((o) => (
+                <details key={o.city} className="group">
+                  <summary className="text-white/80 text-sm font-medium cursor-pointer list-none flex items-center gap-2 hover:text-primary transition-colors">
+                    {o.city}
+                    <ChevronDown size={14} className="group-open:rotate-180 transition-transform duration-300" />
+                  </summary>
+                  <p className="text-white/50 text-xs mt-3 pl-3 border-l border-white/10 leading-relaxed">{o.address}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+
+          {/* Columna 3: Contacto */}
+          <div>
+            <h4 className="text-primary font-semibold text-xs uppercase tracking-[0.2em] mb-6">Contacto</h4>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3 text-white/70 text-sm">
+                <Clock size={16} className="text-primary/60 shrink-0 mt-0.5" />
+                <span className="leading-relaxed">Lunes a viernes de 9:00 a 18:00 horas.</span>
+              </div>
+              <a href="mailto:ventas@cyberpeace.tech" className="flex items-center gap-3 text-white/70 text-sm hover:text-primary transition-colors">
+                <Mail size={16} className="text-primary/60 shrink-0" />
+                ventas@cyberpeace.tech
+              </a>
+              <a href="tel:+525581115800" className="flex items-center gap-3 text-white/70 text-sm hover:text-primary transition-colors">
+                <Phone size={16} className="text-primary/60 shrink-0" />
+                +52 55 8111 5800
+              </a>
+            </div>
+          </div>
+
+          {/* Columna 4: Acerca de Cyberpeace */}
           <div>
             <h4 className="text-primary font-semibold text-xs uppercase tracking-[0.2em] mb-6">Acerca de Cyberpeace</h4>
-            <div className="space-y-3 mb-8">
+            <div className="space-y-3">
               {aboutLinks.map((link) => (
                 <a key={link} href="#" className="block text-white/75 text-sm hover:text-primary hover:translate-x-1 transition-all duration-300">
                   {link}
                 </a>
-              ))}
-            </div>
-
-            {/* Certification badges */}
-            <div className="grid grid-cols-2 gap-2">
-              {['ISO 27001', 'SOC 2'].map((cert) => (
-                <div key={cert} className="bg-white/[0.04] border border-white/[0.08] rounded-lg px-2 py-2.5 text-center hover:border-primary/25 hover:bg-primary/[0.06] transition-all duration-300">
-                  <span className="text-[9px] text-white/60 font-medium uppercase tracking-wider">{cert}</span>
-                </div>
               ))}
             </div>
           </div>
@@ -102,10 +100,7 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className="border-t border-white/[0.08] pt-8 flex flex-wrap justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
-            <img src={logoColor} alt="Cyberpeace" className="h-6 brightness-0 invert opacity-90" />
-          </div>
-          <span className="text-white/50 text-xs">Cyberpeace Copyright © 2026 - All rights reserved.</span>
+          <span className="text-white/50 text-xs">© 2026 CyberPeace. Todos los derechos reservados.</span>
           <div className="flex items-center gap-3">
             <span className="text-[10px] text-white/40 border border-white/[0.1] px-2.5 py-1 rounded font-mono">TLP:CLEAR</span>
             <button onClick={scrollToTop} className="w-8 h-8 rounded-lg bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300">

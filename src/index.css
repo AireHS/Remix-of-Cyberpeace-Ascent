@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 @layer base {
   :root {
@@ -601,5 +601,86 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* === ESTILOS DEL CARRUSEL DE PARTNERS === */
+.partners-section {
+  width: 100%;
+  padding: 60px 0;
+  background: transparent; /* Se integra con tu fondo oscuro */
+  overflow: hidden;
+}
+
+.partners-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+/* Pista de los logos que se mueve infinitamente */
+.partners-track {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  animation: scrollPartners 30s linear infinite;
+}
+
+.partners-track:hover {
+  animation-play-state: paused; /* Se detiene al pasar el mouse */
+}
+
+/* Tarjeta individual de cada logo */
+.partner-card {
+  width: 200px;
+  height: 100px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.3); /* Fondo semi-transparente oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-blur: md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.partner-card img {
+  max-width: 140px;
+  max-height: 50px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Hace los logos blancos para el fondo oscuro */
+  opacity: 0.7;
+  transition: 0.3s ease;
+}
+
+.partner-card:hover {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.4);
+  transform: translateY(-5px);
+}
+
+.partner-card:hover img {
+  opacity: 1;
+  filter: none; /* Muestra el color original al pasar el mouse */
+}
+
+/* Animación del movimiento */
+@keyframes scrollPartners {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .partner-card {
+    width: 160px;
+    height: 85px;
+  }
+  .partners-track {
+    gap: 20px;
+    animation-duration: 20s;
   }
 }
