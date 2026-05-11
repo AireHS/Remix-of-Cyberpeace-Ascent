@@ -442,15 +442,22 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-[hsl(222_30%_8%)] text-white ${
         scrolled
-          ? 'bg-background/95 backdrop-blur-2xl border-b border-border shadow-[0_2px_8px_0_hsl(220_20%_10%/0.12)]'
-          : 'bg-background/80 backdrop-blur-xl border-b border-border/30'
+          ? 'border-b border-white/10 shadow-[0_2px_8px_0_hsl(220_20%_10%/0.4)]'
+          : 'border-b border-white/5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-[68px] flex items-center justify-between">
+      {/* Patrón de fondo sutil estilo Footer */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+        backgroundImage: 'radial-gradient(circle at 1px 1px, white 0.5px, transparent 0)',
+        backgroundSize: '32px 32px',
+      }} />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-[68px] flex items-center justify-between relative z-10">
         <Link to="/" className="shrink-0">
-          <img src={logoColor} alt="Cyberpeace" className="h-10" />
+          <img src={logoColor} alt="Cyberpeace" className="h-10 brightness-0 invert opacity-90" />
         </Link>
 
         <div className="hidden lg:flex items-center gap-0.5">
@@ -461,7 +468,7 @@ const Navbar = () => {
               onMouseEnter={() => handleMouseEnter(section.label)}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center gap-1 px-3.5 py-2 text-[13px] font-medium text-foreground/70 hover:text-foreground transition-colors duration-200 rounded-lg menu-item-shine menu-item-glow">
+              <button className="flex items-center gap-1 px-3.5 py-2 text-[13px] font-medium text-white/75 hover:text-white transition-colors duration-200 rounded-lg menu-item-shine menu-item-glow">
                 {section.label}
                 <ChevronDown size={13} className={`transition-transform duration-300 ${openDropdown === section.label ? 'rotate-180' : ''}`} />
               </button>
@@ -472,7 +479,7 @@ const Navbar = () => {
           ))}
           <Link
             to="/pricing"
-            className="flex items-center px-3.5 py-2 text-[13px] font-medium text-foreground/70 hover:text-foreground transition-colors duration-200 rounded-lg menu-item-shine menu-item-glow"
+            className="flex items-center px-3.5 py-2 text-[13px] font-medium text-white/75 hover:text-white transition-colors duration-200 rounded-lg menu-item-shine menu-item-glow"
           >
             Pricing
           </Link>
@@ -481,17 +488,17 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-3">
           <Link
             to="/csirt"
-            className="group relative inline-flex items-center gap-2.5 text-[13px] font-semibold btn-emergency-shine rounded-lg px-3 py-2"
+            className="group relative inline-flex items-center gap-2.5 text-[13px] font-semibold bg-destructive text-white rounded-lg px-4 py-2 hover:bg-destructive/90 transition-all duration-300 shadow-lg shadow-destructive/20 btn-emergency-sweep"
           >
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-destructive opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-destructive" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white" />
             </span>
             Reportar Incidente
           </Link>
           <Link
             to="/contacto"
-            className="border border-border text-foreground px-5 py-2 text-[13px] font-semibold rounded-lg hover:bg-muted/60 transition-all duration-300 menu-item-shine menu-item-glow"
+            className="bg-white text-[hsl(222_30%_8%)] px-5 py-2 text-[13px] font-bold rounded-lg hover:bg-white/90 transition-all duration-300 shadow-sm"
           >
             Contacto
           </Link>
@@ -503,19 +510,19 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <button className="lg:hidden text-foreground p-2" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button className="lg:hidden text-white p-2" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-background border-t border-border/60 max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden bg-[hsl(222_30%_8%)] border-t border-white/10 max-h-[80vh] overflow-y-auto relative z-10">
           <div className="px-6 py-5 space-y-1">
             {menuSections.map((section) => (
               <div key={section.label}>
                 <button
-                  className="w-full flex items-center justify-between py-3 text-[13px] font-medium text-foreground menu-item-shine rounded-lg px-3"
+                  className="w-full flex items-center justify-between py-3 text-[13px] font-medium text-white/90 menu-item-shine rounded-lg px-3"
                   onClick={() => setMobileExpanded(mobileExpanded === section.label ? null : section.label)}
                 >
                   {section.label}
@@ -532,7 +539,7 @@ const Navbar = () => {
                           <div className="flex items-center gap-2 menu-item-shine menu-item-glow rounded-lg">
                             <Link
                               to={item.href}
-                              className="flex-1 flex items-center gap-2 py-2.5 px-2 text-[13px] text-muted-foreground hover:text-primary transition-colors duration-200"
+                              className="flex-1 flex items-center gap-2 py-2.5 px-2 text-[13px] text-white/60 hover:text-primary transition-colors duration-200"
                               onClick={() => setMobileOpen(false)}
                             >
                               <Icon size={14} className="shrink-0" />
@@ -541,7 +548,7 @@ const Navbar = () => {
                             {hasGroups && (
                               <button
                                 onClick={() => setMobileSubExpanded(mobileSubExpanded === subKey ? null : subKey)}
-                                className="p-1.5 text-muted-foreground"
+                                className="p-1.5 text-white/50 hover:text-white transition-colors"
                               >
                                 <ChevronDown size={12} className={`transition-transform duration-300 ${mobileSubExpanded === subKey ? 'rotate-180' : ''}`} />
                               </button>
@@ -554,9 +561,9 @@ const Navbar = () => {
                                   <p className="text-[10px] uppercase tracking-[0.15em] text-primary font-semibold mb-1.5">{group.title}</p>
                                   <div className="space-y-1">
                                     {group.items.map((h) => (
-                                      <div key={h} className="mega-chip flex items-start gap-2 px-2.5 py-1.5 rounded-lg bg-muted/40 border border-border/40">
+                                      <div key={h} className="mega-chip flex items-start gap-2 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10">
                                         <span className="mega-chip-dot w-1 h-1 rounded-full bg-primary shrink-0 mt-1.5" />
-                                        <span className="text-[10.5px] text-foreground/80 leading-tight">{h}</span>
+                                        <span className="text-[10.5px] text-white/80 leading-tight">{h}</span>
                                       </div>
                                     ))}
                                   </div>
@@ -573,20 +580,20 @@ const Navbar = () => {
             ))}
             <Link
               to="/pricing"
-              className="block py-3 text-[13px] font-medium text-foreground menu-item-shine rounded-lg px-3"
+              className="block py-3 text-[13px] font-medium text-white/90 menu-item-shine rounded-lg px-3"
               onClick={() => setMobileOpen(false)}
             >
               Pricing
             </Link>
-            <div className="pt-5 border-t border-border/60 space-y-3">
-              <Link to="/csirt" className="flex items-center justify-center gap-2 text-[13px] text-destructive font-semibold menu-item-shine rounded-lg py-2" onClick={() => setMobileOpen(false)}>
+            <div className="pt-5 border-t border-white/10 space-y-3">
+              <Link to="/csirt" className="btn-emergency-sweep flex items-center justify-center gap-2 text-[13px] text-white bg-destructive font-semibold rounded-lg py-2.5 hover:bg-destructive/90 transition-colors shadow-lg shadow-destructive/20" onClick={() => setMobileOpen(false)}>
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-destructive opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-destructive" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
                 </span>
                 Reportar Incidente
               </Link>
-              <Link to="/contacto" className="block border border-border text-foreground px-5 py-2.5 text-[13px] font-semibold rounded-lg text-center menu-item-shine menu-item-glow" onClick={() => setMobileOpen(false)}>
+              <Link to="/contacto" className="block bg-white text-[hsl(222_30%_8%)] px-5 py-2.5 text-[13px] font-bold rounded-lg text-center hover:bg-white/90 transition-colors shadow-sm" onClick={() => setMobileOpen(false)}>
                 Contacto
               </Link>
               <Link to="/partners#registro" className="block bg-primary text-primary-foreground px-5 py-2.5 text-[13px] font-semibold rounded-lg text-center btn-premium-shine" onClick={() => setMobileOpen(false)}>

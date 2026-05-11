@@ -1,13 +1,13 @@
 import React from 'react';
-import logoWatchguard from '@/assets/logo-watchguard.png';
-import logoWazuh from '@/assets/logo-wazuh.png';
-import logoMicrosoft from '@/assets/logo-microsoft.png';
-import logoGoogle from '@/assets/logo-google.png';
-import logoSentinelone from '@/assets/logo-sentinelone.png';
-import logoTrendmicro from '@/assets/logo-trendmicro.png';
-import logoLumu from '@/assets/logo-lumu.png';
-import logoAxur from '@/assets/logo-axur.png';
-import logoPaloalto from '@/assets/logo-paloalto.png';
+import logoWatchguard from '@/assets/logos/watchguard.svg';
+import logoWazuh from '@/assets/logos/wazuh.svg';
+import logoMicrosoft from '@/assets/logos/microsoft.svg';
+import logoGoogle from '@/assets/logos/google.svg';
+import logoSentinelone from '@/assets/logos/sentinelone.svg';
+import logoTrendmicro from '@/assets/logos/trendmicro.png';
+import logoLumu from '@/assets/logos/lumu.jpeg';
+import logoAxur from '@/assets/logos/axur.svg';
+import logoPaloalto from '@/assets/logos/paloalto.svg';
 
 const logos = [
   { name: "Palo Alto", url: logoPaloalto },
@@ -28,10 +28,10 @@ const PartnersStrip = () => {
   return (
     <section className="partners-section">
       <div className="container mx-auto px-6 mb-10 text-center">
-        <h2 className="text-sm font-bold tracking-[0.2em] text-cyan-400 uppercase mb-2">
+        <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-2">
           Nuestras Alianzas
         </h2>
-        <h3 className="text-3xl font-bold text-white">Tecnología de Clase Mundial</h3>
+        <h3 className="text-3xl font-bold text-foreground">Tecnología de Clase Mundial</h3>
       </div>
 
       <div className="partners-carousel">
